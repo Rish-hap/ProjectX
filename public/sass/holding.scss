@@ -1,0 +1,46 @@
+@import "constants";
+
+.card {
+  padding: 0;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid rgb(241, 239, 239) !important;
+  div {
+    width: 100%;
+    text-align: center;
+  }
+  .heading {
+    background-color: $fiveColor;
+    color: $sixColor !important;
+    height: 45px;
+    border-radius: 10px 10px 0 0;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  img {
+    padding-top: 10px;
+    height: 70px;
+    width: auto;
+  }
+  h2 {
+    font-weight: 100;
+    margin: 5px;
+  }
+  hr {
+    width: 100%;
+    border: 1px solid lightgray !important;
+  }
+  .zero {
+    font-weight: bold;
+    color: $thirdColor !important;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+}
+

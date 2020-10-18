@@ -1,0 +1,94 @@
+#imgLine {
+  margin-top: 20px; }
+  #imgLine img {
+    height: 120px !important;
+    width: 120px; }
+  #imgLine h2 {
+    font-weight: 300;
+    color: #617578; }
+
+#cards {
+  display: grid;
+  grid-template-columns: 1fr auto auto 1fr;
+  column-gap: 40px;
+  justify-items: center;
+  color: #005252; }
+  #cards .card {
+    background-color: #fff;
+    width: 270px;
+    border: 1px solid #bdbaba;
+    border-radius: 5px;
+    display: grid; }
+    #cards .card h2 {
+      margin: 0; }
+    #cards .card hr {
+      border: 1px solid #bdbaba;
+      width: 100%;
+      height: 0;
+      margin: 0; }
+    #cards .card p {
+      margin: 0; }
+    #cards .card .title {
+      font-weight: normal;
+      align-self: flex-end; }
+    #cards .card .star {
+      font-size: 2.5rem;
+      margin: 0; }
+    #cards .card .text {
+      display: grid;
+      grid-template-rows: auto auto;
+      justify-items: flex-start;
+      height: 100%;
+      padding-top: 10px;
+      padding-left: 20px; }
+    #cards .card #card1 {
+      display: flex;
+      justify-content: space-around;
+      align-items: center; }
+      #cards .card #card1 .text {
+        padding-top: 20px; }
+      #cards .card #card1 img {
+        height: 55px;
+        width: 55px; }
+    #cards .card .fnir {
+      text-align: right;
+      padding: 10px 20px; }
+
+#lines {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px; }
+  #lines button {
+    background-color: #005252;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    height: 40px;
+    width: 150px;
+    margin-bottom: 30px;
+    font-size: 1.05rem;
+    font-weight: bold;
+    margin-top: 20px; }
+  #lines h2 {
+    margin: 20px;
+    color: #617578;
+    margin-bottom: 40px;
+    font-weight: normal; }
+    #lines h2 b {
+      color: #005252; }
+  #lines span {
+    border-radius: 5px;
+    background-color: #fec64f;
+    margin-left: 10px;
+    padding: 5px 20px; }
+    #lines span a {
+      text-decoration: none;
+      color: #617578;
+      font-size: 0.8em;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+      justify-items: center; }

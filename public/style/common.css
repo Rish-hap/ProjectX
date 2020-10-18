@@ -1,0 +1,14 @@
+#cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #617578; }
+  #cards .card {
+    background-color: white;
+    width: 200px;
+    border: 1px solid #bdbaba;
+    border-radius: 10px;
+    margin-top: 30px;
+    margin-left: 50px; }
+  #cards * {
+    color: #617578; }

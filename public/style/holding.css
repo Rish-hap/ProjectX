@@ -1,0 +1,36 @@
+.card {
+  padding: 0;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid #f1efef !important; }
+  .card div {
+    width: 100%;
+    text-align: center; }
+  .card .heading {
+    background-color: #266969;
+    color: #ffbf26 !important;
+    height: 45px;
+    border-radius: 10px 10px 0 0;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+  .card img {
+    padding-top: 10px;
+    height: 70px;
+    width: auto; }
+  .card h2 {
+    font-weight: 100;
+    margin: 5px; }
+  .card hr {
+    width: 100%;
+    border: 1px solid lightgray !important; }
+  .card .zero {
+    font-weight: bold;
+    color: #002e0a !important;
+    font-size: 1.8rem;
+    margin-bottom: 10px; }
