@@ -27,9 +27,9 @@ console.log(state)
           <Link to="/"><h2>FNIR</h2></Link>
         </div>
         <div id="heading">
-        <Link to="/home/farming">Farming</Link>
-        <Link to="/home/reward">Holding Reward</Link>
-        <Link to="/home/staking">Staking</Link>
+        <Link to="/farming">Farming</Link>
+        <Link to="/reward">Holding Reward</Link>
+        <Link to="/staking">Staking</Link>
         </div>
         <button type="submit">Link Wallet</button>
       </div>
