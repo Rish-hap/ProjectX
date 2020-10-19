@@ -11,23 +11,169 @@ import Footer from "../Components/Footer/Index.js"
 
 import MetamaskContext from '../contexts/metamask';
 
-function Farming (props){
+import {
+  fessContractAddress,
+  fnirContractAddress
+} from '../utils/config';
 
+function Farming ({fnirBalance, getFnirBalance }){
       const metamaskContextValue = React.useContext(MetamaskContext);
+
+      const [userApprove, setUserApprove] = React.useState(0);
+
+      const [allowance, setAllowance] = React.useState(0);
+
+      const [userSwap, setUserSwap] = React.useState(0);
+
+      const [fessBalance, setFessBalance] = React.useState(0);
+
+
+
+      const getAllowance = async () => {
+        try {
+          const allowanceValue = await metamaskContextValue.fessContractInstance.methods
+            .allowance(
+              metamaskContextValue.ethereumAddress,
+              fnirContractAddress,
+            )
+            .call();
+
+            setAllowance((
+              Number(allowanceValue) / Math.pow(10, 18)
+            ).toLocaleString(undefined, {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 4,
+            }))
+
+            setUserSwap((
+              Number(allowanceValue) / Math.pow(10, 18)
+            ).toLocaleString(undefined, {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 4,
+            }))
+        } catch (err) {
+          console.log('Farming -> getAllowance: err: ', err);
+        }
+      }
+
+      const getFessBalance = async () => {
+        try {
+          const fessBalanceValue = await metamaskContextValue.fessContractInstance.methods
+            .balanceOf(
+              metamaskContextValue.ethereumAddress
+            )
+            .call();
+
+            setFessBalance((
+              Number(fessBalanceValue) / Math.pow(10, 18)
+            ).toLocaleString(undefined, {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 4,
+            }))
+
+            console.log('fessBalanceValue: ', fessBalanceValue)
+        } catch (err) {
+          console.log('Farming -> getFessBalance: err: ', err);
+        }
+      }
+
+
+      const handleApprove = async() => {
+        if (Number(userApprove) > 0) {
+          try {
+          const approveRequest = await metamaskContextValue.fessContractInstance.methods
+          .approve(
+            fnirContractAddress,
+            metamaskContextValue.web3Instance.utils.toWei(
+              String(userApprove),
+              'ether',
+            ),
+          )
+          .send({
+            from: metamaskContextValue.ethereumAddress,
+            to: fessContractAddress,
+          });
+
+          console.log('approveRequest: ', approveRequest)
+
+          getAllowance();
+          getFessBalance();
+        getFnirBalance();
+        } catch (err) {
+          console.log('Farming -> handleApprove: err: ', err);
+        }
+        }
+      }
+
+      const handleSwap = async() => {
+        if (Number(allowance) > 0 && Number(userSwap) > 0  && Number(allowance) >= Number(userSwap)) {
+          try {
+          const swapRequest = await metamaskContextValue.fnirContractInstance.methods
+          .swapTokens(
+            metamaskContextValue.web3Instance.utils.toWei(
+              String(userSwap),
+              'ether',
+            ),
+          )
+          .send({
+            value:  metamaskContextValue.web3Instance.utils.toWei(
+              String(0.1),
+              'ether',
+            ),
+            from: metamaskContextValue.ethereumAddress,
+            to: fnirContractAddress,
+          });
+
+          console.log('swapRequest: ', swapRequest)
+
+          getAllowance();
+          getFessBalance();
+          getFnirBalance();
+        } catch (err) {
+          console.log('Farming -> handleSwap: err: ', err);
+        }
+        }
+
+      }
+
+      React.useEffect(() => {
+        if (
+          metamaskContextValue.fessContractInstance &&
+          metamaskContextValue.fnirContractInstance
+        ) {
+        getAllowance();
+        getFessBalance();
+        getFnirBalance();
+        }
+      }, [metamaskContextValue.fessContractInstance,
+        metamaskContextValue.fnirContractInstance])
+
+
+      console.log('allowance: ', allowance)
+      console.log('fessBalance: ', fessBalance)
+      console.log('fnirBalance: ', fnirBalance)
+
         return (
              <React.Fragment>
                 <div >
                 <FarmingView
-
-
-                    global_error = {props.global_error}
+                    userApprove={userApprove}
+                    setUserApprove={setUserApprove}
+                    handleApprove={handleApprove}
+                    allowance={allowance}
+                    fessBalance={fessBalance}
+                    fnirBalance={fnirBalance}
+                    userSwap={userSwap}
+                    setUserSwap={setUserSwap}
+                    handleSwap={handleSwap}
+                    // global_error = {props.global_error}
                   />
                <Footer />
-                  <Notif
+                  {/* <Notif
                      global_error = {props.global_error}
                      global_error_ret = {props.global_error_ret}
                      global_error_clr = {props.global_error_clr}
-                  />
+                  /> */}
                 </div>
              </React.Fragment>
         )

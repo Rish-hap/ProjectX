@@ -28,8 +28,8 @@ console.log(state)
         </div>
         <div id="heading">
         <Link to="/farming">Farming</Link>
-        <Link to="/reward">Holding Reward</Link>
-        <Link to="/staking">Staking</Link>
+        {/* <Link to="/reward">Holding Reward</Link> */}
+        {/* <Link to="/staking">Staking</Link> */}
         </div>
 
         {

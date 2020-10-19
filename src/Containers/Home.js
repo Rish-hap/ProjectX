@@ -13,7 +13,7 @@ import {compose} from "redux"
 
 import MetamaskContext from '../contexts/metamask';
 
-function Home(props) {
+function Home({fnirBalance, fnirTotalSupply}) {
   const metamaskContextValue = React.useContext(MetamaskContext);
 
 
@@ -24,20 +24,22 @@ function Home(props) {
  }
 
 
- console.log(props,"props in props")
+//  console.log(props,"props in props")
 
   return (
     <React.Fragment>
     <div >
       <HomeView
-        global_error = {props.global_error}
+      fnirBalance={fnirBalance}
+      fnirTotalSupply={fnirTotalSupply}
+        // global_error = {props.global_error}
       />
       <Footer />
-      <Notif
+      {/* <Notif
          global_error = {props.global_error}
          global_error_ret = {props.global_error_ret}
          global_error_clr = {props.global_error_clr}
-      />
+      /> */}
     </div>
  </React.Fragment>
   );

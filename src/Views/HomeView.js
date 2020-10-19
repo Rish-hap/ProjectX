@@ -9,7 +9,7 @@ import AnimatedMount from "../HOC/AnimatedMount"
 
 
 
-const HomeView = (props) => {
+const HomeView = ({fnirBalance, fnirTotalSupply}) => {
       return <React.Fragment>
 
       <div id="imgLine">
@@ -29,7 +29,7 @@ const HomeView = (props) => {
           </div>
           <hr />
           <div className="fnir">
-            <p>0.000 FNIR</p>
+            <p>{fnirBalance} FNIR</p>
           </div>
         </div>
         <div className="card">
@@ -39,13 +39,13 @@ const HomeView = (props) => {
           </div>
           <hr />
           <div className="fnir">
-            <p>100 FNIR</p>
+            <p>{fnirTotalSupply} FNIR</p>
           </div>
         </div>
       </div>
 
       <div id="lines">
-        <button type="submit">Link Wallet</button>
+        {/* <button type="submit">Link Wallet</button> */}
         <h2>
           <b>FNIR X FESS: </b>Swap FESS to get 12% extra FNIR at every
           transaction

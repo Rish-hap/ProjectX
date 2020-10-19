@@ -10,8 +10,12 @@ import Reward from "./Containers/Reward"
 import Staking from "./Containers/Staking"
 import {  Route, Switch, Redirect,  BrowserRouter as Router } from 'react-router-dom'
 import Header from "./Components/Header"
+import fessABI from './utils/fessABI';
+import fnirABI from './utils/fnirABI';
 import {
-  contractDeployedNetwork
+  contractDeployedNetwork,
+  fessContractAddress,
+  fnirContractAddress
 } from './utils/config';
 import { TIMEOUT, NOT_INSTALLED, LOCKED } from './metamask/constants';
 
@@ -20,13 +24,14 @@ import { MetamaskProvider } from './contexts/metamask';
 function App(props) {
   const [metamaskContextValue, setMetamaskContextValue] = React.useState({
     ethereumAddress: null,
-    superContractInstance: null,
-    megaContractInstance: null,
-    ultraContractInstance: null,
-    liquidityProviderTokenStakingContractInstance: null,
+    fessContractInstance: null,
+    fnirContractInstance: null,
     web3Instance: null,
     metamaskError: null,
   });
+
+  const [fnirBalance, setFnirBalance] = React.useState(0);
+  const [fnirTotalSupply, setFnirTotalSupply] = React.useState(0);
 
   const [networkError, setNetworkError] = React.useState(false);
   const chainedWeb3 = window.ethereum;
@@ -56,14 +61,14 @@ function App(props) {
     }
     setMetamaskContextValue({
       ethereumAddress: null,
-      superContractInstance: null,
-      megaContractInstance: null,
-      ultraContractInstance: null,
-      liquidityProviderTokenStakingContractInstance: null,
+      fessContractInstance: null,
+      fnirContractInstance: null,
       web3Instance: null,
       metamaskError,
     });
   };
+
+
 
   const loadBlockChain = async () => {
     const error =
@@ -81,19 +86,22 @@ function App(props) {
       if (network === contractDeployedNetwork.toLowerCase()) {
         console.log('web3: ', web3);
         const accounts = await web3.eth.getAccounts();
-        // const contractSuper = new web3.eth.Contract(
-        //   superABI,
-        //   superContractAddress,
-        // );
+        const contractFESS = new web3.eth.Contract(
+          fessABI,
+          fessContractAddress,
+        );
+
+        const contractFNIR = new web3.eth.Contract(
+          fnirABI,
+          fnirContractAddress,
+        );
 
 
         setMetamaskContextValue({
           ...metamaskContextValue,
           ethereumAddress: accounts[0],
-          // superContractInstance: contractSuper,
-          // megaContractInstance: contractMega,
-          // ultraContractInstance: contractUltra,
-          // liquidityProviderTokenStakingContractInstance: contractLPTS,
+          fessContractInstance: contractFESS,
+          fnirContractInstance: contractFNIR,
           web3Instance: web3,
         });
         setNetworkError(false);
@@ -122,6 +130,59 @@ function App(props) {
      isAuthenticated: !!localStorage.getItem('token')
     }
  }
+
+ const getFnirBalance = async () => {
+  try {
+    const fnirBalanceValue = await metamaskContextValue.fnirContractInstance.methods
+      .balanceOf(
+        metamaskContextValue.ethereumAddress
+      )
+      .call();
+
+      setFnirBalance((
+        Number(fnirBalanceValue) / Math.pow(10, 18)
+      ).toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 4,
+      }))
+
+      console.log('getFnirBalance: fnirBalanceValue: ', fnirBalanceValue)
+  } catch (err) {
+    console.log('Farming -> getFnirBalance: err: ', err);
+  }
+}
+
+const getFnirTotalSupply = async () => {
+  try {
+    const totalSupply = await metamaskContextValue.fnirContractInstance.methods
+      .totalSupply()
+      .call();
+
+      setFnirTotalSupply((
+        Number(totalSupply) / Math.pow(10, 18)
+      ).toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 4,
+      }))
+
+      console.log('getFnirTotalSupply: totalSupply: ', totalSupply)
+  } catch (err) {
+    console.log('Farming -> getFnirTotalSupply: err: ', err);
+  }
+}
+
+ React.useEffect(() => {
+  if (
+    metamaskContextValue.fessContractInstance &&
+    metamaskContextValue.fnirContractInstance
+  ) {
+  getFnirBalance();
+  getFnirTotalSupply();
+  }
+}, [metamaskContextValue.fessContractInstance,
+  metamaskContextValue.fnirContractInstance])
+
+ console.log('metamaskContextValue: ', metamaskContextValue)
   return (
       <React.Fragment>
         <MetamaskProvider value={metamaskContextValue}>
@@ -130,8 +191,8 @@ function App(props) {
          <Header ethereumAddress={metamaskContextValue.ethereumAddress} handleConnectMetamask={handleConnectMetamask}/>
           <Switch>
             <Redirect exact from="/" to="/home" />
-            <Route  path ="/home" component={()=> <Home  />}/>
-            <Route  path ="/farming" component={()=><Farming  />}/>
+            <Route  path ="/home" component={()=> <Home  fnirBalance={fnirBalance} fnirTotalSupply={fnirTotalSupply} />}/>
+            <Route  path ="/farming" component={()=><Farming fnirBalance={fnirBalance} getFnirBalance={getFnirBalance} />}/>
             <Route  path ="/reward" component={()=><Reward />}/>
             <Route  path ="/staking" component={()=><Staking />}/>
           </Switch>
