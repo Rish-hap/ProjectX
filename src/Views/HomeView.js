@@ -11,7 +11,7 @@ import AnimatedMount from "../HOC/AnimatedMount"
 
 const HomeView = (props) => {
       return <React.Fragment>
-               
+
       <div id="imgLine">
         <img src="FNIR LOGO 256x256.png" alt="logo" />
         <h2>Farm your FNIR and Claim your Rewards!</h2>
@@ -62,7 +62,7 @@ const HomeView = (props) => {
         </h2>
       </div>
 
-   
+
       </React.Fragment>
 }
 

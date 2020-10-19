@@ -31,7 +31,21 @@ console.log(state)
         <Link to="/reward">Holding Reward</Link>
         <Link to="/staking">Staking</Link>
         </div>
-        <button type="submit">Link Wallet</button>
+
+        {
+          props.ethereumAddress && <a
+          href={`https://etherscan.io/address/${props.ethereumAddress}`}
+          target="_blank"
+        ><button type="submit">{`${props.ethereumAddress.substring(
+          0,
+          4,
+        )}...${props.ethereumAddress.substring(props.ethereumAddress.length - 5)}`}</button></a>
+        }
+
+        {
+          !props.ethereumAddress && <button type="submit" onClick={() => props.handleConnectMetamask()}>Link Wallet</button>
+        }
+
       </div>
     )
 }

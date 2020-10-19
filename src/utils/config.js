@@ -1,1 +1,1 @@
-export const contractDeployedNetwork = 'MAIN';
+export const contractDeployedNetwork = 'ROPSTEN';
