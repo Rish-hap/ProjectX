@@ -30,8 +30,11 @@ const FarmingView = ({userApprove, setUserApprove, handleApprove, allowance, fes
             {/* <h2>ETH</h2> */}
             <button type="submit" style={{ cursor: 'pointer' }} onClick={() => handleApprove()}>APPROVE</button>
           </div>
-          <div className="zero"></div>
-          <div className="zero"><span>Total Approved: </span>{allowance}</div>
+
+          <div className="zero" style={{ fontSize: '1.9rem' }}>
+          <div><span>Total Approved: </span></div>
+            {allowance}
+            </div>
         </div>
 
         {/* <h1>+</h1> */}
@@ -68,20 +71,24 @@ const FarmingView = ({userApprove, setUserApprove, handleApprove, allowance, fes
             <img src="./fess.png" alt="Fess" />
             <h2>FESS</h2>
           </div>
-          <div className="zero"><span>Available: </span>{fessBalance}</div>
+
+          <div className="zero" style={{ fontSize: '1.9rem' }}  >
+          <span>Available: </span>
+            {fessBalance}
+            </div>
           {/* <div className="avail">Available</div> */}
         </div>
 
         <h1>=</h1>
 
         <div className="card">
-          <h1>You Get</h1>
-          <input/>
+          {/* <h1>You Get</h1> */}
+          {/* <input/> */}
           <div className="image">
             <img src="./FNIR LOGO 256x256.png" alt="FNIR"/>
             <h2>FNIR</h2>
           </div>
-          <div className="zero"><span>Available: </span>{fnirBalance}</div>
+          <div className="zero" style={{ fontSize: '1.9rem' }}><span>Available: </span>{fnirBalance}</div>
           {/* <div className="avail">Available</div> */}
           <div className="note" style={{fontFamily:'normal', marginBottom:'15px'}}>12% APTR as Reaping Reward</div>
         </div>
