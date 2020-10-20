@@ -1,7 +1,7 @@
 {
     "apps": [
       {
-        "name": "ether-tree-user",
+        "name": "fess-fnir",
         "script": "scripts/start.js",
         "exec_mode": "cluster_mode",
         "instances": 2,
@@ -9,11 +9,11 @@
         "watch": false,
         "time": true,
         "env": {
-          "PORT": 7011,
+          "PORT": 7090,
           "NODE_ENV": "production"
         },
         "env_production": {
-          "PORT": 7011,
+          "PORT": 7090,
           "NODE_ENV": "production"
         }
       }

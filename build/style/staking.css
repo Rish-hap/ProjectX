@@ -1,0 +1,33 @@
+.card {
+  width: 210px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; }
+  .card img {
+    padding-top: 10px;
+    height: 50px;
+    width: auto; }
+  .card .zero {
+    font-weight: bold;
+    color: #002e0a !important;
+    font-size: 1.5rem;
+    margin-top: 10px; }
+  .card h2 {
+    font-weight: normal;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 1.2rem;
+    color: BLACK !important; }
+  .card button {
+    width: 150px;
+    height: 30px;
+    border: none;
+    border-radius: 7px;
+    font-size: 1rem;
+    background-color: #005252;
+    color: white !important;
+    margin-bottom: 30px; }
+  .card .per {
+    font-size: 0.8rem;
+    margin: 10px; }

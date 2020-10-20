@@ -28,10 +28,10 @@ const FarmingView = ({userApprove, setUserApprove, handleApprove, allowance, fes
           <div className="image">
             {/* <img src="./eth.png" alt="eth"/> */}
             {/* <h2>ETH</h2> */}
-
+            <button type="submit" style={{ cursor: 'pointer' }} onClick={() => handleApprove()}>APPROVE</button>
           </div>
           <div className="zero"></div>
-          <button type="submit" style={{ cursor: 'pointer' }} onClick={() => handleApprove()}>APPROVE</button>
+          <div className="zero"><span>Total Approved: </span>{allowance}</div>
         </div>
 
         {/* <h1>+</h1> */}

@@ -1,0 +1,41 @@
+@import "constants";
+
+.card {
+  width: 210px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  img {
+    padding-top: 10px;
+    height: 50px;
+    width: auto;
+  }
+  .zero {
+    font-weight: bold;
+    color: $thirdColor !important;
+    font-size: 1.5rem;
+    margin-top: 10px;
+  }
+  h2 {
+    font-weight: normal;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 1.2rem;
+    color: BLACK !important;
+  }
+  button {
+    width: 150px;
+    height: 30px;
+    border: none;
+    border-radius: 7px;
+    font-size: 1rem;
+    background-color: $secondaryColor;
+    color: white !important;
+    margin-bottom: 30px;
+  }
+  .per {
+    font-size: 0.8rem;
+    margin: 10px;
+  }
+}
