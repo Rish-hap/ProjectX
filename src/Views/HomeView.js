@@ -50,7 +50,7 @@ const HomeView = ({fnirBalance, fnirTotalSupply}) => {
           <b>FNIR X FESS: </b>Swap FESS to get 12% extra FNIR at every
           transaction
         </h2>
-        <h2>
+        {/* <h2>
           <b>Referral Link</b>
           <span
             ><a href="#"
@@ -59,7 +59,7 @@ const HomeView = ({fnirBalance, fnirTotalSupply}) => {
                 style={{width:'25px', paddingLeft:'20px'}}
                 src="./copy.png" /></a
           ></span>
-        </h2>
+        </h2> */}
       </div>
 
 

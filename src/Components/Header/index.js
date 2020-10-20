@@ -36,14 +36,14 @@ console.log(state)
           props.ethereumAddress && <a
           href={`https://etherscan.io/address/${props.ethereumAddress}`}
           target="_blank"
-        ><button type="submit">{`${props.ethereumAddress.substring(
+        ><button type="submit" style={{ cursor: 'pointer' }}>{`${props.ethereumAddress.substring(
           0,
           4,
-        )}...${props.ethereumAddress.substring(props.ethereumAddress.length - 5)}`}</button></a>
+        )}...${props.ethereumAddress.substring(props.ethereumAddress.length - 6)}`}</button></a>
         }
 
         {
-          !props.ethereumAddress && <button type="submit" onClick={() => props.handleConnectMetamask()}>Link Wallet</button>
+          !props.ethereumAddress && <button type="submit"  style={{ cursor: 'pointer' }} onClick={() => props.handleConnectMetamask()}>Link Wallet</button>
         }
 
       </div>

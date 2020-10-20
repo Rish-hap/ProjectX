@@ -34,6 +34,11 @@ const fnirABI = [
 				"internalType": "address",
 				"name": "_fesschainAddress",
 				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_priceFess",
+				"type": "uint256"
 			}
 		],
 		"payable": false,

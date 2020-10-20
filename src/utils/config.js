@@ -1,3 +1,3 @@
-export const fessContractAddress = '0xa04d01bfa901a3ab643b273e6164e18e4b7feb4f';
-export const fnirContractAddress = '0xb78e681a4ff44ac747fa1de15f9c1c350f2abac4';
-export const contractDeployedNetwork = 'RINKEBY';
+export const fessContractAddress = '0xcd8307346414d3a69cf14a8f5838e11dacf0af0b';
+export const fnirContractAddress = '0xe4c10ae5d2bb3d971c30449ea3ebe1551c4988b2';
+export const contractDeployedNetwork = 'MAIN';

@@ -8,7 +8,7 @@ const Footer = () => {
                     <a href="#">FNIR Contract</a>
                     <a href="#">Github</a>
                 </div>
-                <div class="demo">DEMO WEBSITE</div>
+                {/* <div class="demo">DEMO WEBSITE</div> */}
             </React.Fragment>
         )
 }
