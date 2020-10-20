@@ -19,6 +19,11 @@ import {
 } from './utils/config';
 import { TIMEOUT, NOT_INSTALLED, LOCKED } from './metamask/constants';
 
+import styled from 'styled-components';
+
+import { ImWarning } from 'react-icons/im';
+import { GiCrossMark } from 'react-icons/gi';
+
 import { MetamaskProvider } from './contexts/metamask';
 
 function App(props) {
@@ -185,8 +190,17 @@ const getFnirTotalSupply = async () => {
  console.log('metamaskContextValue: ', metamaskContextValue)
   return (
       <React.Fragment>
+         <div className={networkError ? 'PhishAlertActive' : 'PhishAlert'}>
+            <div style={{ display: 'flex' }}>
+              <ImWarning style={{ marginRight: 6 }} size={15} />
+              <span className="alertSpan">
+                Make sure the Metamask Network is{' '}
+                {contractDeployedNetwork.toUpperCase()}
+              </span>
+            </div>
+            <StyledClose size={15} onClick={() => setNetworkError(false)} />
+          </div>
         <MetamaskProvider value={metamaskContextValue}>
-
          <Router>
          <Header ethereumAddress={metamaskContextValue.ethereumAddress} handleConnectMetamask={handleConnectMetamask}/>
           <Switch>
@@ -208,3 +222,9 @@ const mapStateToProps = state => ({
 })
 
 export default App
+
+export const StyledClose = styled(GiCrossMark)`
+  :hover {
+    cursor: pointer;
+  }
+`;

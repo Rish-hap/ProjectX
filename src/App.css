@@ -1,0 +1,22 @@
+.PhishAlert {
+    display: none;
+  }
+
+.PhishAlertActive {
+width: 100%;
+padding: 10px 10px;
+background-color: #f7be00;
+color: #191919;
+font-size: 11px;
+justify-content: space-between;
+align-items: center;
+display: flex;
+}
+
+.alertSpan {
+padding: 0 15px;
+/* font-family: Courier Prime; */
+font-size: 1.2rem;
+font-weight: 600;
+color: #191919;
+}
