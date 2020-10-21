@@ -7,7 +7,8 @@ body {
   margin: 0; }
   body > div {
     /* max-width: 1024px; */
-    margin: 0 auto; }
+    margin: 0 auto;
+  }
 
 #header > div:first-child a {
   text-decoration: none;
@@ -23,7 +24,9 @@ body {
   justify-content: space-between;
   align-items: center;
   margin-left: 40px;
-  margin-right: 80px; }
+  margin-right: 80px;
+
+}
 
 #header img {
   height: 50px;

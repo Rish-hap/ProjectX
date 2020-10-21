@@ -20,3 +20,18 @@ font-size: 1.2rem;
 font-weight: 600;
 color: #191919;
 }
+
+
+@media (min-width: 200px) and (max-width: 575px) {
+    #header,
+#header div {
+  width: 100vw;
+  justify-content: flex-start;
+  margin-left: 0px;
+  margin-right: 0px;
+  }
+
+  #cards {
+    flex-direction: column;
+  }
+}
