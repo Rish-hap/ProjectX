@@ -5,10 +5,10 @@ const FarmingView = ({userApprove, setUserApprove, handleApprove, allowance, fes
                <div id="imgLine">
         <img src="./reap.png" alt="image" />
         <h2><span>Reap</span> FNIR Swapping Fess</h2>
-        <p>
+        {/* <p>
           Lorem lpsum is simply dummy text of the printing <br />
           and typesetting industry.
-        </p>
+        </p> */}
       </div>
 
       <div id="cards">
