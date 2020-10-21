@@ -16,7 +16,7 @@ import {
   fnirContractAddress
 } from '../utils/config';
 
-function Farming ({fnirBalance, getFnirBalance }){
+function Farming ({fnirBalance, getFnirBalance, getFessBalance, fessBalance  }){
       const metamaskContextValue = React.useContext(MetamaskContext);
 
       const [userApprove, setUserApprove] = React.useState(0);
@@ -24,10 +24,6 @@ function Farming ({fnirBalance, getFnirBalance }){
       const [allowance, setAllowance] = React.useState(0);
 
       const [userSwap, setUserSwap] = React.useState(0);
-
-      const [fessBalance, setFessBalance] = React.useState(0);
-
-
 
       const getAllowance = async () => {
         try {
@@ -55,28 +51,6 @@ function Farming ({fnirBalance, getFnirBalance }){
           console.log('Farming -> getAllowance: err: ', err);
         }
       }
-
-      const getFessBalance = async () => {
-        try {
-          const fessBalanceValue = await metamaskContextValue.fessContractInstance.methods
-            .balanceOf(
-              metamaskContextValue.ethereumAddress
-            )
-            .call();
-
-            setFessBalance((
-              Number(fessBalanceValue) / Math.pow(10, 18)
-            ).toLocaleString(undefined, {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 4,
-            }))
-
-            console.log('fessBalanceValue: ', fessBalanceValue)
-        } catch (err) {
-          console.log('Farming -> getFessBalance: err: ', err);
-        }
-      }
-
 
       const handleApprove = async() => {
         if (Number(userApprove) > 0) {

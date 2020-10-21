@@ -37,6 +37,7 @@ function App(props) {
 
   const [fnirBalance, setFnirBalance] = React.useState(0);
   const [fnirTotalSupply, setFnirTotalSupply] = React.useState(0);
+  const [fessBalance, setFessBalance] = React.useState(0);
 
   const [networkError, setNetworkError] = React.useState(false);
   const chainedWeb3 = window.ethereum;
@@ -153,7 +154,7 @@ function App(props) {
 
       console.log('getFnirBalance: fnirBalanceValue: ', fnirBalanceValue)
   } catch (err) {
-    console.log('Farming -> getFnirBalance: err: ', err);
+    console.log('App -> getFnirBalance: err: ', err);
   }
 }
 
@@ -172,7 +173,28 @@ const getFnirTotalSupply = async () => {
 
       console.log('getFnirTotalSupply: totalSupply: ', totalSupply)
   } catch (err) {
-    console.log('Farming -> getFnirTotalSupply: err: ', err);
+    console.log('App -> getFnirTotalSupply: err: ', err);
+  }
+}
+
+const getFessBalance = async () => {
+  try {
+    const fessBalanceValue = await metamaskContextValue.fessContractInstance.methods
+      .balanceOf(
+        metamaskContextValue.ethereumAddress
+      )
+      .call();
+
+      setFessBalance((
+        Number(fessBalanceValue) / Math.pow(10, 18)
+      ).toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 4,
+      }))
+
+      console.log('fessBalanceValue: ', fessBalanceValue)
+  } catch (err) {
+    console.log('App -> getFessBalance: err: ', err);
   }
 }
 
@@ -183,6 +205,7 @@ const getFnirTotalSupply = async () => {
   ) {
   getFnirBalance();
   getFnirTotalSupply();
+  getFessBalance();
   }
 }, [metamaskContextValue.fessContractInstance,
   metamaskContextValue.fnirContractInstance])
@@ -205,8 +228,8 @@ const getFnirTotalSupply = async () => {
          <Header ethereumAddress={metamaskContextValue.ethereumAddress} handleConnectMetamask={handleConnectMetamask}/>
           <Switch>
             <Redirect exact from="/" to="/home" />
-            <Route  path ="/home" component={()=> <Home  fnirBalance={fnirBalance} fnirTotalSupply={fnirTotalSupply} />}/>
-            <Route  path ="/farming" component={()=><Farming fnirBalance={fnirBalance} getFnirBalance={getFnirBalance} />}/>
+            <Route  path ="/home" component={()=> <Home  fnirBalance={fnirBalance} fnirTotalSupply={fnirTotalSupply} fessBalance={fessBalance}/>}/>
+            <Route  path ="/farming" component={()=><Farming fnirBalance={fnirBalance} getFnirBalance={getFnirBalance} getFessBalance={getFessBalance} fessBalance={fessBalance} />}/>
             <Route  path ="/reward" component={()=><Reward />}/>
             <Route  path ="/staking" component={()=><Staking />}/>
           </Switch>

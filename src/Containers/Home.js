@@ -13,7 +13,7 @@ import {compose} from "redux"
 
 import MetamaskContext from '../contexts/metamask';
 
-function Home({fnirBalance, fnirTotalSupply}) {
+function Home({fnirBalance, fnirTotalSupply, fessBalance}) {
   const metamaskContextValue = React.useContext(MetamaskContext);
 
 
@@ -32,6 +32,7 @@ function Home({fnirBalance, fnirTotalSupply}) {
       <HomeView
       fnirBalance={fnirBalance}
       fnirTotalSupply={fnirTotalSupply}
+      fessBalance={fessBalance}
         // global_error = {props.global_error}
       />
       <Footer />

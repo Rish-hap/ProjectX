@@ -9,7 +9,7 @@ import AnimatedMount from "../HOC/AnimatedMount"
 
 
 
-const HomeView = ({fnirBalance, fnirTotalSupply}) => {
+const HomeView = ({fnirBalance, fnirTotalSupply, fessBalance}) => {
       return <React.Fragment>
 
       <div id="imgLine">
@@ -18,7 +18,19 @@ const HomeView = ({fnirBalance, fnirTotalSupply}) => {
       </div>
 
       <div id="cards">
-        <div></div>
+      <div className="card">
+          <div id="card1">
+            <img src="./fess.png" alt="fess" />
+            <div className="text">
+              <p className="title">Your FESS Balance</p>
+              <h2 className="star">*******</h2>
+            </div>
+          </div>
+          <hr />
+          <div className="fnir">
+            <p>{fessBalance} FESS</p>
+          </div>
+        </div>
         <div className="card">
           <div id="card1">
             <img src="FNIR LOGO 256x256.png" alt="logo" />
