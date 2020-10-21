@@ -59,7 +59,7 @@
 
     .text {
       display: grid;
-      grid-template-rows: auto auto ;
+      grid-template-rows: auto auto;
       justify-items: flex-start;
       height: 100%;
       padding-top: 10px;
@@ -71,7 +71,7 @@
       justify-content: space-around;
       align-items: center;
 
-      .text{
+      .text {
         padding-top: 20px;
       }
 
@@ -101,7 +101,7 @@
     border: none;
     border-radius: 10px;
     height: 40px;
-    width: 150px;
+    // width: 150px;
     margin-bottom: 30px;
     font-size: 1.05rem;
     font-weight: bold;

@@ -1,21 +1,24 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap");
 * {
-  font-family: "Lato", sans-serif; }
+  font-family: "Lato", sans-serif;
+}
 
 body {
   background-color: #faf9fd;
-  margin: 0; }
-  body > div {
-    /* max-width: 1024px; */
-    margin: 0 auto;
-  }
+  margin: 0;
+}
+body > div {
+  /* max-width: 1024px; */
+  margin: 0 auto;
+}
 
 #header > div:first-child a {
   text-decoration: none;
   color: black;
   margin-left: 10 px;
   font-size: 1.5rem;
-  letter-spacing: 0.016em; }
+  letter-spacing: 0.016em;
+}
 
 #header,
 #header div {
@@ -25,66 +28,77 @@ body {
   align-items: center;
   margin-left: 40px;
   margin-right: 80px;
-
 }
 
 #header img {
   height: 50px;
-  width: 50px; }
+  width: 50px;
+}
 
 #header button {
   height: 30px;
-  width: 100px;
+  min-width: 100px;
   background-color: #f9f9fc;
   border: none;
   box-shadow: 0px 0px 6px 0px #7a7a7a;
   border-radius: 5px;
   font-weight: bold;
-  color: #002e0a; }
+  color: #002e0a;
+}
 
 #imgLine {
   display: flex;
   justify-items: center;
   align-items: center;
   flex-direction: column;
-  text-align: center; }
-  #imgLine img {
-    height: 250px;
-    margin: 20px; }
-  #imgLine h2 {
-    color: #002e0a;
-    font-size: 1.8em;
-    margin-top: 0; }
-  #imgLine p {
-    margin-top: 0;
-    color: #617578;
-    font-size: 1.2em; }
+  text-align: center;
+}
+#imgLine img {
+  height: 250px;
+  margin: 20px;
+}
+#imgLine h2 {
+  color: #002e0a;
+  font-size: 1.8em;
+  margin-top: 0;
+}
+#imgLine p {
+  margin-top: 0;
+  color: #617578;
+  font-size: 1.2em;
+}
 
 #heading a {
   text-decoration: none;
   color: #617578;
   margin: 20px;
-  font-weight: 900; }
-  #heading a.active {
-    color: #002e0a; }
+  font-weight: 900;
+}
+#heading a.active {
+  color: #002e0a;
+}
 
 #footer {
   margin-top: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 50px; }
-  #footer a {
-    text-decoration: none;
-    color: #617578;
-    padding-left: 50px; }
+  margin-bottom: 50px;
+}
+#footer a {
+  text-decoration: none;
+  color: #617578;
+  padding-left: 50px;
+}
 
 .demo {
   text-align: center;
   margin: 20px;
-  font-size: 2rem; }
+  font-size: 2rem;
+}
 
 .disci {
   text-align: center;
   color: #617578;
-  margin-top: 40px; }
+  margin-top: 40px;
+}
