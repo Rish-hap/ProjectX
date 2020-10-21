@@ -80,16 +80,16 @@ function Farming ({fnirBalance, getFnirBalance, getFessBalance, fessBalance  }){
       }
 
       const handleSwap = async() => {
-        console.log('handleSwap: allowance: ', Number(allowance));
+        console.log('handleSwap: allowance: ', parseFloat(allowance.replace(/[^0-9-.]/g, '')));
         console.log('handleSwap: userSwap: ', Number(userSwap));
-        console.log('Number(allowance) >= Number(userSwap): ', Number(allowance) >= Number(userSwap))
-        if (Number(allowance) > 0 && Number(userSwap) > 0  && Number(allowance) >= Number(userSwap)) {
+        console.log('allowance >= userSwap: ', parseFloat(allowance.replace(/[^0-9-.]/g, '')) >= Number(userSwap))
+        if (parseFloat(allowance.replace(/[^0-9-.]/g, '')) > 0 && Number(userSwap) > 0  && parseFloat(allowance.replace(/[^0-9-.]/g, '')) >= Number(userSwap)) {
           try {
             console.log('handleSwap is called successfully');
           const swapRequest = await metamaskContextValue.fnirContractInstance.methods
           .swapTokens(
             metamaskContextValue.web3Instance.utils.toWei(
-              String(Number(userSwap)),
+              String(userSwap),
               'ether',
             ),
           )
