@@ -89,7 +89,7 @@ function Farming ({fnirBalance, getFnirBalance, getFessBalance, fessBalance  }){
           const swapRequest = await metamaskContextValue.fnirContractInstance.methods
           .swapTokens(
             metamaskContextValue.web3Instance.utils.toWei(
-              String(userSwap),
+              String(Number(userSwap)),
               'ether',
             ),
           )
