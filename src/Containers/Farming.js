@@ -80,8 +80,8 @@ function Farming ({fnirBalance, getFnirBalance, getFessBalance, fessBalance  }){
       }
 
       const handleSwap = async() => {
-        console.log('handleSwap: allowance: ', allowance)
-        console.log('handleSwap: userSwap: ', userSwap)
+        console.log('handleSwap: allowance: ', Number(allowance));
+        console.log('handleSwap: userSwap: ', Number(userSwap));
         console.log('Number(allowance) >= Number(userSwap): ', Number(allowance) >= Number(userSwap))
         if (Number(allowance) > 0 && Number(userSwap) > 0  && Number(allowance) >= Number(userSwap)) {
           try {
