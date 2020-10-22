@@ -96,7 +96,7 @@ function Farming ({fnirBalance, getFnirBalance, getFessBalance, fessBalance  }){
           )
           .send({
             value:  metamaskContextValue.web3Instance.utils.toWei(
-              String(0.49),
+              String(0.51),
               'ether',
             ),
             from: metamaskContextValue.ethereumAddress,
