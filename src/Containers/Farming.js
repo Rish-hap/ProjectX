@@ -13,7 +13,8 @@ import MetamaskContext from '../contexts/metamask';
 
 import {
   fessContractAddress,
-  fnirContractAddress
+  fnirContractAddress,
+  liquidityContractAddress,
 } from '../utils/config';
 
 function Farming ({fnirBalance, getFnirBalance, getFessBalance, fessBalance  }){
@@ -30,7 +31,7 @@ function Farming ({fnirBalance, getFnirBalance, getFessBalance, fessBalance  }){
           const allowanceValue = await metamaskContextValue.fessContractInstance.methods
             .allowance(
               metamaskContextValue.ethereumAddress,
-              fnirContractAddress,
+              liquidityContractAddress,
             )
             .call();
 
@@ -57,7 +58,7 @@ function Farming ({fnirBalance, getFnirBalance, getFessBalance, fessBalance  }){
           try {
           const approveRequest = await metamaskContextValue.fessContractInstance.methods
           .approve(
-            fnirContractAddress,
+            liquidityContractAddress,
             metamaskContextValue.web3Instance.utils.toWei(
               String(userApprove),
               'ether',
@@ -86,8 +87,8 @@ function Farming ({fnirBalance, getFnirBalance, getFessBalance, fessBalance  }){
         if (parseFloat(allowance.replace(/[^0-9-.]/g, '')) > 0 && Number(userSwap) > 0  && parseFloat(allowance.replace(/[^0-9-.]/g, '')) >= Number(userSwap)) {
           try {
             console.log('handleSwap is called successfully');
-          const swapRequest = await metamaskContextValue.fnirContractInstance.methods
-          .swapTokens(
+          const swapRequest = await metamaskContextValue.liquidityContractInstance.methods
+          .swapFessTokens(
             metamaskContextValue.web3Instance.utils.toWei(
               String(userSwap),
               'ether',
@@ -99,7 +100,7 @@ function Farming ({fnirBalance, getFnirBalance, getFessBalance, fessBalance  }){
               'ether',
             ),
             from: metamaskContextValue.ethereumAddress,
-            to: fnirContractAddress,
+            to: liquidityContractAddress,
           });
 
           console.log('swapRequest: ', swapRequest)
@@ -117,14 +118,16 @@ function Farming ({fnirBalance, getFnirBalance, getFessBalance, fessBalance  }){
       React.useEffect(() => {
         if (
           metamaskContextValue.fessContractInstance &&
-          metamaskContextValue.fnirContractInstance
+          metamaskContextValue.fnirContractInstance &&
+          metamaskContextValue.liquidityContractInstance
         ) {
-        getAllowance();
-        getFessBalance();
-        getFnirBalance();
+          getAllowance();
+          getFessBalance();
+          getFnirBalance();
         }
       }, [metamaskContextValue.fessContractInstance,
-        metamaskContextValue.fnirContractInstance])
+        metamaskContextValue.fnirContractInstance,
+        metamaskContextValue.liquidityContractInstance])
 
 
       console.log('allowance: ', allowance)

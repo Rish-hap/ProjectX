@@ -12,10 +12,12 @@ import {  Route, Switch, Redirect,  BrowserRouter as Router } from 'react-router
 import Header from "./Components/Header"
 import fessABI from './utils/fessABI';
 import fnirABI from './utils/fnirABI';
+import liquidityABI from './utils/liquidityABI';
 import {
   contractDeployedNetwork,
   fessContractAddress,
-  fnirContractAddress
+  fnirContractAddress,
+  liquidityContractAddress
 } from './utils/config';
 import { TIMEOUT, NOT_INSTALLED, LOCKED } from './metamask/constants';
 
@@ -31,6 +33,7 @@ function App(props) {
     ethereumAddress: null,
     fessContractInstance: null,
     fnirContractInstance: null,
+    liquidityContractInstance: null,
     web3Instance: null,
     metamaskError: null,
   });
@@ -69,6 +72,7 @@ function App(props) {
       ethereumAddress: null,
       fessContractInstance: null,
       fnirContractInstance: null,
+      liquidityContractInstance: null,
       web3Instance: null,
       metamaskError,
     });
@@ -102,12 +106,17 @@ function App(props) {
           fnirContractAddress,
         );
 
+        const contractLiquidity = new web3.eth.Contract(
+          liquidityABI,
+          liquidityContractAddress,
+        );
 
         setMetamaskContextValue({
           ...metamaskContextValue,
           ethereumAddress: accounts[0],
           fessContractInstance: contractFESS,
           fnirContractInstance: contractFNIR,
+          liquidityContractInstance: contractLiquidity,
           web3Instance: web3,
         });
         setNetworkError(false);
@@ -201,14 +210,16 @@ const getFessBalance = async () => {
  React.useEffect(() => {
   if (
     metamaskContextValue.fessContractInstance &&
-    metamaskContextValue.fnirContractInstance
+    metamaskContextValue.fnirContractInstance && 
+    metamaskContextValue.liquidityContractInstance
   ) {
   getFnirBalance();
   getFnirTotalSupply();
   getFessBalance();
   }
 }, [metamaskContextValue.fessContractInstance,
-  metamaskContextValue.fnirContractInstance])
+  metamaskContextValue.fnirContractInstance,
+  metamaskContextValue.liquidityContractInstance])
 
  console.log('metamaskContextValue: ', metamaskContextValue)
   return (
