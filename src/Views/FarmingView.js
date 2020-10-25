@@ -80,6 +80,9 @@ const FarmingView = ({ethereumAddress, userApprove, setUserApprove, handleApprov
 
           {
             ethereumAddress &&
+            <React.Fragment>
+              <p style={{ fontWeight: 700, marginTop: '20px' }}>Referral Address</p>
+            
             <input
             type="string"
             value={referredEthereum}
@@ -87,8 +90,9 @@ const FarmingView = ({ethereumAddress, userApprove, setUserApprove, handleApprov
             onChange={event =>
               setReferredEthereum(event.target.value)
             }
-            style={{ fontSize: '15px', fontWeight: 700 }}
+            style={{ fontSize: '15px', fontWeight: 700, marginTop: '0px' }}
           />
+          </React.Fragment>
           }
 
           {
