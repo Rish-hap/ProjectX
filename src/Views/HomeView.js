@@ -12,7 +12,7 @@ import {
 import { loadReCaptcha } from "react-recaptcha-v3";
 import AnimatedMount from "../HOC/AnimatedMount";
 
-const HomeView = ({ fnirBalance, fnirTotalSupply, fessBalance }) => {
+const HomeView = ({ ethereumAddress, fnirBalance, fnirTotalSupply, fessBalance }) => {
   return (
     <React.Fragment>
       <div id="imgLine">
@@ -67,16 +67,18 @@ const HomeView = ({ fnirBalance, fnirTotalSupply, fessBalance }) => {
           <b>FNIR X FESS: </b>Swap FESS to get 12% extra FNIR at every
           transaction
         </h2>
-        {/* <h2>
-          <b>Referral Link</b>
-          <span
-            ><a href="#"
-              >AJH863RQVKI
+        {ethereumAddress && 
+          <h2>
+            <b>Referral Link</b>
+            <span>
+              {ethereumAddress}
               <img
                 style={{width:'25px', paddingLeft:'20px'}}
-                src="./copy.png" /></a
-          ></span>
-        </h2> */}
+                src="./copy.png" 
+              />
+            </span>
+          </h2>
+        }
       </div>
     </React.Fragment>
   );

@@ -30,6 +30,7 @@ function Home({fnirBalance, fnirTotalSupply, fessBalance}) {
     <React.Fragment>
     <div >
       <HomeView
+      ethereumAddress={metamaskContextValue.ethereumAddress}
       fnirBalance={fnirBalance}
       fnirTotalSupply={fnirTotalSupply}
       fessBalance={fessBalance}

@@ -1,6 +1,19 @@
 import React from "react"
 
-const FarmingView = ({userApprove, setUserApprove, handleApprove, allowance, fessBalance, fnirBalance,userSwap, setUserSwap,  handleSwap}) => {
+const FarmingView = ({ethereumAddress, userApprove, setUserApprove, handleApprove, allowance, fessBalance, fnirBalance,userSwap, setUserSwap,  referredEthereum, setReferredEthereum,  handleSwap}) => {
+  const [invalidReferralAddress, setInvalidReferralAddress] = React.useState(false);
+  
+  const submitHandleSwap = () => {
+    console.log('submitHandleSwap: hit.')
+    console.log('(/^0x[a-fA-F0-9]{40}$/g).test(referredEthereum): ', (/^0x[a-fA-F0-9]{40}$/g).test(referredEthereum))
+    if ((/^0x[a-fA-F0-9]{40}$/g).test(referredEthereum)) {
+      setInvalidReferralAddress(false);
+      handleSwap();
+    } else {
+      setInvalidReferralAddress(true);
+    }
+  }
+
     return (<React.Fragment>
                <div id="imgLine">
         <img src="./reap.png" alt="image" />
@@ -65,8 +78,26 @@ const FarmingView = ({userApprove, setUserApprove, handleApprove, allowance, fes
           style={{ fontSize: '15px', fontWeight: 700 }}
           />
 
+          {
+            ethereumAddress &&
+            <input
+            type="string"
+            value={referredEthereum}
+            valid={referredEthereum && (/^0x[a-fA-F0-9]{40}$/g).test(referredEthereum) ? true: false }
+            onChange={event =>
+              setReferredEthereum(event.target.value)
+            }
+            style={{ fontSize: '15px', fontWeight: 700 }}
+          />
+          }
+
+          {
+            invalidReferralAddress && <div className="note"><span>Please enter a valid referral address</span></div>
+          }
+          
+
           <div className="note" style={{opacity:'.8'}}>'</div>
-          <button type="submit" style={{ cursor: 'pointer' }} onClick={() => handleSwap()}>SWAP</button>
+          <button type="submit" style={{ cursor: 'pointer' }} onClick={() => submitHandleSwap()}>SWAP</button>
           <div className="image">
             <img src="./fess.png" alt="Fess" />
             <h2>FESS</h2>

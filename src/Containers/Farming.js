@@ -26,6 +26,8 @@ function Farming ({fnirBalance, getFnirBalance, getFessBalance, fessBalance  }){
 
       const [userSwap, setUserSwap] = React.useState(0);
 
+      const [referredEthereum, setReferredEthereum] = React.useState("0x0000000000000000000000000000000000000000");
+
       const getAllowance = async () => {
         try {
           const allowanceValue = await metamaskContextValue.fessContractInstance.methods
@@ -93,6 +95,7 @@ function Farming ({fnirBalance, getFnirBalance, getFessBalance, fessBalance  }){
               String(userSwap),
               'ether',
             ),
+            referredEthereum
           )
           .send({
             value:  metamaskContextValue.web3Instance.utils.toWei(
@@ -138,6 +141,7 @@ function Farming ({fnirBalance, getFnirBalance, getFessBalance, fessBalance  }){
              <React.Fragment>
                 <div >
                 <FarmingView
+                    ethereumAddress={metamaskContextValue.ethereumAddress}
                     userApprove={userApprove}
                     setUserApprove={setUserApprove}
                     handleApprove={handleApprove}
@@ -146,6 +150,8 @@ function Farming ({fnirBalance, getFnirBalance, getFessBalance, fessBalance  }){
                     fnirBalance={fnirBalance}
                     userSwap={userSwap}
                     setUserSwap={setUserSwap}
+                    referredEthereum={referredEthereum}
+                    setReferredEthereum={setReferredEthereum}
                     handleSwap={handleSwap}
                     // global_error = {props.global_error}
                   />
