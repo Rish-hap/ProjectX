@@ -1,21 +1,16 @@
 {
-    "apps": [
-      {
-        "name": "fess-fnir",
-        "script": "scripts/start.js",
-        "exec_mode": "cluster_mode",
-        "instances": 2,
-        "autorestart": true,
-        "watch": false,
-        "time": true,
-        "env": {
-          "PORT": 7090,
-          "NODE_ENV": "production"
-        },
-        "env_production": {
-          "PORT": 7090,
-          "NODE_ENV": "production"
-        }
+  "apps": [
+    {
+      "name": "fnir-finance",
+      "script": "server.js",
+      "exec_mode": "cluster_mode",
+      "instances": 1,
+      "autorestart": true,
+      "watch": false,
+      "time": true,
+      "env": {
+        "NODE_ENV": "production"
       }
-    ]
-  }
+    }
+  ]
+}
